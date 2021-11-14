@@ -24,22 +24,6 @@ pipeline {
                 }
             }
         }
-        stage('Make Container') {
-                steps {
-                    script {
-                    def NAME = sh (
-                                script: 'mvn help:evaluate -Dexpression=project.name | grep "^[^[]"',
-                                returnStdout: true
-                                ).trim()
-                    def VERSION = sh (
-                                script: 'mvn help:evaluate -Dexpression=project.version | grep "^[^[]"',
-                                returnStdout: true
-                                ).trim()
-                    sh "docker build -t srknbdk/${NAME}:${VERSION}-${env.BUILD_ID} ."
-                    sh "docker tag srknbdk/${NAME}:${VERSION}-${env.BUILD_ID} srknbdk/${NAME}:latest"
-                    }
-                }
-        }
         stage('Deliver') {
             steps {
                 sh './jenkins/scripts/deliver.sh'
