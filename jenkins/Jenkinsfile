@@ -36,11 +36,11 @@ pipeline {
                 steps {
                     script {
                     def NAME = sh (
-                                script: 'mvn help:evaluate -Dexpression=project.name | grep "^[^\[]"',
+                                script: 'mvn help:evaluate -Dexpression=project.name | grep "^[^[]"',
                                 returnStdout: true
                                 ).trim()
                     def VERSION = sh (
-                                script: 'mvn help:evaluate -Dexpression=project.version | grep "^[^\[]"',
+                                script: 'mvn help:evaluate -Dexpression=project.version | grep "^[^[]"',
                                 returnStdout: true
                                 ).trim()
                     sh "docker build -t srknbdk/${NAME}:${VERSION}-${env.BUILD_ID} ."
