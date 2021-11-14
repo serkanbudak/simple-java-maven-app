@@ -27,11 +27,11 @@ pipeline {
         stage('Make Container') {
             steps {
                 NAME = sh (
-                        script: 'mvn help:evaluate -Dexpression=project.name | grep "^[^\[]"',
+                        script: 'mvn help:evaluate -Dexpression=project.name | grep "^[^[]"',
                         returnStdout: true
                         ).trim()
                 VERSION = sh (
-                        script: 'mvn help:evaluate -Dexpression=project.version | grep "^[^\[]"',
+                        script: 'mvn help:evaluate -Dexpression=project.version | grep "^[^[]"',
                         returnStdout: true
                         ).trim()
 
